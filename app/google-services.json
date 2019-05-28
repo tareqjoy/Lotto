@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "41046996600",
+    "firebase_url": "https://lotto-cba0a.firebaseio.com",
+    "project_id": "lotto-cba0a",
+    "storage_bucket": "lotto-cba0a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:41046996600:android:e387102064b1fc5f",
+        "android_client_info": {
+          "package_name": "com.qerat.lotto"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "41046996600-n94rr8keun10o2v6kda8e0hp7u6tlsap.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.qerat.lotto",
+            "certificate_hash": "ddcac1a6410112638180daf930c0d486bb69dd7e"
+          }
+        },
+        {
+          "client_id": "41046996600-mtd674dm63loprp63r5r5qaq5mnde19j.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB2iHM2B10VMZVG9oXh-pX7jmMra03O2bw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "41046996600-mtd674dm63loprp63r5r5qaq5mnde19j.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

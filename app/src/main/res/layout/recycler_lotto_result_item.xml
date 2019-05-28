@@ -1,0 +1,383 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="5dp"
+
+    android:elevation="5dp"
+    android:orientation="vertical"
+    app:cardCornerRadius="5dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?attr/selectableItemBackground"
+        android:clickable="true"
+        android:focusable="true"
+        android:id="@+id/parent"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight=".23"
+
+            android:gravity="center_vertical"
+            android:orientation="vertical"
+            android:paddingStart="5dp"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity=""
+                android:text="Code"
+                android:textColor="@color/colorPrimaryDark" />
+
+            <TextView
+                android:id="@+id/codeTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingStart="6dp"
+                android:paddingEnd="6dp"
+                android:text="1556"
+                android:textColor="@color/colorPrimaryDark"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:text="Date"
+                android:textColor="@color/colorPrimaryDark" />
+
+            <TextView
+                android:id="@+id/dateTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingStart="6dp"
+                android:paddingEnd="6dp"
+                android:text="2019-05-16"
+                android:textColor="@color/colorPrimaryDark"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight=".77"
+            android:orientation="vertical"
+
+            android:paddingEnd="5dp"
+            android:paddingBottom="5dp">
+
+            <TableLayout
+                android:id="@+id/ffnTable"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:stretchColumns="*">
+
+                <TableRow android:background="#e0f2f1">
+
+                    <TextView
+                        style="@style/row1TextView"
+                        android:paddingLeft="5dp"
+                        android:text="FFN1" />
+
+                    <LinearLayout
+                        android:layout_height="match_parent"
+                        android:gravity="center">
+
+                        <View style="@style/Divider_invisible" />
+                    </LinearLayout>
+
+                    <TextView
+                        style="@style/row1TextView"
+                        android:text="FFN2" />
+
+                    <LinearLayout
+                        android:layout_width="1dp"
+                        android:layout_height="match_parent"
+                        android:gravity="center">
+
+                        <View style="@style/Divider_invisible" />
+                    </LinearLayout>
+
+                    <TextView
+                        style="@style/row1TextView"
+                        android:text="FFN3" />
+
+                    <LinearLayout
+                        android:layout_width="1dp"
+                        android:layout_height="match_parent"
+                        android:gravity="center">
+
+                        <View style="@style/Divider_invisible" />
+                    </LinearLayout>
+
+                    <TextView
+                        style="@style/row1TextView"
+                        android:text="FFN4" />
+
+                    <LinearLayout
+                        android:layout_width="1dp"
+                        android:layout_height="match_parent"
+                        android:gravity="center">
+
+                        <View style="@style/Divider_invisible" />
+                    </LinearLayout>
+
+                    <TextView
+                        style="@style/row1TextView"
+                        android:paddingRight="5dp"
+                        android:text="FFN5" />
+
+                </TableRow>
+
+                <TableRow>
+
+                    <TextView
+                        android:id="@+id/ffn1"
+                        style="@style/row1TextView"
+                        android:paddingLeft="5dp"
+                        android:text="11" />
+
+                    <LinearLayout
+
+                        android:layout_height="match_parent"
+                        android:gravity="center">
+
+                        <View style="@style/Divider_invisible" />
+                    </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/ffn2"
+                        style="@style/row1TextView"
+                        android:text="12" />
+
+                    <LinearLayout
+                        android:layout_width="1dp"
+                        android:layout_height="match_parent"
+                        android:gravity="center">
+
+                        <View style="@style/Divider_invisible" />
+                    </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/ffn3"
+                        style="@style/row1TextView"
+                        android:text="13" />
+
+                    <LinearLayout
+                        android:layout_width="1dp"
+                        android:layout_height="match_parent"
+                        android:gravity="center">
+
+                        <View style="@style/Divider_invisible" />
+                    </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/ffn4"
+                        style="@style/row1TextView"
+                        android:text="14" />
+
+                    <LinearLayout
+                        android:id="@+id/ffn5"
+                        android:layout_width="1dp"
+                        android:layout_height="match_parent"
+                        android:gravity="center">
+
+                        <View style="@style/Divider_invisible" />
+                    </LinearLayout>
+
+                    <TextView
+                        style="@style/row1TextView"
+                        android:paddingRight="5dp"
+                        android:text="99" />
+
+                </TableRow>
+
+            </TableLayout>
+
+            <TableLayout
+                android:id="@+id/xtraTable"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:stretchColumns="*">
+                <TableRow android:background="#f3e5f5">
+
+                    <TextView
+                        style="@style/row2TextView"
+                        android:paddingLeft="25dp"
+                        android:text="XTRA1" />
+
+                    <LinearLayout
+                        android:layout_height="match_parent"
+                        android:gravity="center">
+
+                        <View style="@style/Divider_invisible" />
+                    </LinearLayout>
+
+                    <TextView
+                        style="@style/row2TextView"
+                        android:paddingRight="25dp"
+                        android:text="XTRA2" />
+                </TableRow>
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        style="@style/row2TextView"
+                        android:paddingLeft="25dp"
+                        android:text="55" />
+
+                    <LinearLayout
+                        android:layout_height="match_parent"
+                        android:gravity="center">
+
+                        <View style="@style/Divider_invisible" />
+                    </LinearLayout>
+
+                    <TextView
+                        style="@style/row2TextView"
+                        android:paddingRight="25dp"
+                        android:text="68" />
+                </TableRow>
+
+
+
+            </TableLayout>
+
+            <TableLayout
+                android:id="@+id/lfnTable"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:stretchColumns="*">
+
+                <TableRow android:background="#fbe9e7">
+
+                    <TextView
+                        style="@style/row3TextView"
+                        android:paddingLeft="5dp"
+                        android:text="LFN1" />
+
+                    <LinearLayout
+                        android:layout_height="match_parent"
+                        android:gravity="center">
+
+                        <View style="@style/Divider_invisible" />
+                    </LinearLayout>
+
+                    <TextView
+                        style="@style/row3TextView"
+                        android:text="LFN2" />
+
+                    <LinearLayout
+                        android:layout_width="1dp"
+                        android:layout_height="match_parent"
+                        android:gravity="center">
+
+                        <View style="@style/Divider_invisible" />
+                    </LinearLayout>
+
+                    <TextView
+                        style="@style/row3TextView"
+                        android:text="LFN3" />
+
+                    <LinearLayout
+                        android:layout_width="1dp"
+                        android:layout_height="match_parent"
+                        android:gravity="center">
+
+                        <View style="@style/Divider_invisible" />
+                    </LinearLayout>
+
+                    <TextView
+                        style="@style/row3TextView"
+                        android:text="LFN4" />
+
+                    <LinearLayout
+                        android:layout_width="1dp"
+                        android:layout_height="match_parent"
+                        android:gravity="center">
+
+                        <View style="@style/Divider_invisible" />
+                    </LinearLayout>
+
+                    <TextView
+                        style="@style/row3TextView"
+                        android:paddingRight="5dp"
+                        android:text="LFN5" />
+
+                </TableRow>
+
+                <TableRow>
+
+                    <TextView
+                        style="@style/row3TextView"
+                        android:paddingLeft="5dp"
+                        android:text="31" />
+
+                    <LinearLayout
+
+                        android:layout_height="match_parent"
+                        android:gravity="center">
+
+                        <View style="@style/Divider_invisible" />
+                    </LinearLayout>
+
+                    <TextView
+                        style="@style/row3TextView"
+                        android:text="32" />
+
+                    <LinearLayout
+                        android:layout_width="1dp"
+                        android:layout_height="match_parent"
+                        android:gravity="center">
+
+                        <View style="@style/Divider_invisible" />
+                    </LinearLayout>
+
+                    <TextView
+                        style="@style/row3TextView"
+
+                        android:text="33" />
+
+                    <LinearLayout
+                        android:layout_width="1dp"
+                        android:layout_height="match_parent"
+                        android:gravity="center">
+
+                        <View style="@style/Divider_invisible" />
+                    </LinearLayout>
+
+                    <TextView
+                        style="@style/row3TextView"
+
+                        android:text="34" />
+
+                    <LinearLayout
+                        android:layout_width="1dp"
+                        android:layout_height="match_parent"
+                        android:gravity="center">
+
+                        <View style="@style/Divider_invisible" />
+                    </LinearLayout>
+
+                    <TextView
+                        style="@style/row3TextView"
+                        android:paddingRight="5dp"
+                        android:text="39" />
+
+                </TableRow>
+
+            </TableLayout>
+        </LinearLayout>
+
+    </LinearLayout>
+</android.support.v7.widget.CardView>
