@@ -1,7 +1,9 @@
 package com.qerat.lotto;
 
+import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -189,7 +191,7 @@ public class ResultAddActivity extends AppCompatActivity implements DatePickerDi
                     int monthNumber = Integer.parseInt(DateFormat.format("MM", -oldResult.getDate()).toString()); // 06
                     int year = Integer.parseInt(DateFormat.format("yyyy", -oldResult.getDate()).toString()); // 2013
                     new DatePickerDialog(
-                            ResultAddActivity.this, ResultAddActivity.this, year, monthNumber-1, day).show();
+                            ResultAddActivity.this, ResultAddActivity.this, year, monthNumber - 1, day).show();
                 } else {
                     Calendar c = Calendar.getInstance();
                     int mYear = c.get(Calendar.YEAR);
@@ -302,6 +304,34 @@ public class ResultAddActivity extends AppCompatActivity implements DatePickerDi
             }
         });
 
+        deleteButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                new AlertDialog.Builder(ResultAddActivity.this)
+                        .setTitle("Delete result")
+                        .setMessage("Are you sure you want to delete this result?")
+
+                        // Specifying a listener allows you to take an action before dismissing the dialog.
+                        // The dialog is automatically dismissed when a dialog button is clicked.
+                        .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {
+                                deleteData();
+                            }
+                        })
+
+
+                        // A null listener allows the button to dismiss the dialog and take no further action.
+                        .setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+
+                            }
+                        })
+                        .setIcon(android.R.drawable.ic_dialog_alert)
+                        .show();
+            }
+        });
+
         if (editDlg) {
 
         } else {
@@ -314,6 +344,81 @@ public class ResultAddActivity extends AppCompatActivity implements DatePickerDi
 
     }
 
+    private void deleteData() {
+        saving();
+        FirebaseUtilClass.getDatabaseReference().child("Game").child(gameName).child("results").child(oldResult.getCode()).removeValue().addOnSuccessListener(new OnSuccessListener<Void>() {
+            @Override
+            public void onSuccess(Void aVoid) {
+                FirebaseUtilClass.getDatabaseReference().child("Game").child(gameName).child("lastUpdated").addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+                        long oldDate;
+                        try {
+                            oldDate = dataSnapshot.getValue(long.class);
+                            if (oldDate == (oldResult.getDate() * (-1))) {
+                                FirebaseUtilClass.getDatabaseReference().child("Game").child(gameName).child("results").orderByChild("date").limitToFirst(1).addListenerForSingleValueEvent(new ValueEventListener() {
+                                    @Override
+                                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                                        if (dataSnapshot.exists()) {
+                                            for (DataSnapshot childSnapshot : dataSnapshot.getChildren()) {
+                                                String gg = childSnapshot.getKey();
+                                                Long newDate = Long.parseLong(dataSnapshot.child(gg).child("date").getValue().toString());
+
+                                                FirebaseUtilClass.getDatabaseReference().child("Game").child(gameName).child("lastUpdated").setValue(-1 * newDate).addOnSuccessListener(new OnSuccessListener<Void>() {
+                                                    @Override
+                                                    public void onSuccess(Void aVoid) {
+                                                        Toast.makeText(ResultAddActivity.this, "Deleted!", Toast.LENGTH_SHORT).show();
+                                                        finish();
+                                                    }
+                                                }).addOnFailureListener(new OnFailureListener() {
+                                                    @Override
+                                                    public void onFailure(@NonNull Exception e) {
+                                                        Toast.makeText(ResultAddActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+                                                        finish();
+                                                    }
+                                                });
+                                            }
+
+
+                                        } else {
+                                            FirebaseUtilClass.getDatabaseReference().child("Game").child(gameName).child("lastUpdated").setValue("no update yet").addOnSuccessListener(new OnSuccessListener<Void>() {
+                                                @Override
+                                                public void onSuccess(Void aVoid) {
+                                                    Toast.makeText(ResultAddActivity.this, "Deleted!", Toast.LENGTH_SHORT).show();
+                                                    finish();
+                                                }
+                                            });
+                                        }
+                                    }
+
+                                    @Override
+                                    public void onCancelled(@NonNull DatabaseError databaseError) {
+                                        notSaving();
+                                        Toast.makeText(ResultAddActivity.this, databaseError.getMessage(), Toast.LENGTH_SHORT).show();
+                                    }
+                                });
+
+                            }
+                        } catch (Exception e) {
+
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                    }
+                });
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                notSaving();
+                Toast.makeText(ResultAddActivity.this, "Error: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
 
     private void writeToFirebase(final ResultClass resultClass) {
         saving();

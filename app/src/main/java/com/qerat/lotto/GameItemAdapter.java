@@ -4,18 +4,14 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.util.Pair;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Filter;
-import android.widget.Filterable;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class GameItemAdapter extends RecyclerView.Adapter<GameItemAdapter.GameViewHolder> {
@@ -79,7 +75,7 @@ public class GameItemAdapter extends RecyclerView.Adapter<GameItemAdapter.GameVi
                         switch (which) {
 
                             case 0:
-                                new AddGameDialog(context, itemStr).show();
+                                new GameAddDialog(context, itemStr).show();
 
                                 break;
                         }
@@ -94,7 +90,7 @@ public class GameItemAdapter extends RecyclerView.Adapter<GameItemAdapter.GameVi
         holder.parent.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent myIntent = new Intent(context, GameResultActivity.class);
+                Intent myIntent = new Intent(context, ResultActivity.class);
                 myIntent.putExtra("gameName", itemStr); //Optional parameters
                 context.startActivity(myIntent);
             }

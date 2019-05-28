@@ -10,7 +10,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Pair;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
@@ -21,9 +20,8 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
-public class GameResultActivity extends AppCompatActivity {
+public class ResultActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
     private List<ResultClass> itemList = new ArrayList<>();
     private ResultAdapter mAdapter;
@@ -69,7 +67,7 @@ public class GameResultActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent myIntent = new Intent(GameResultActivity.this, ResultAddActivity.class);
+                Intent myIntent = new Intent(ResultActivity.this, ResultAddActivity.class);
                 //Optional parameters
                 myIntent.putExtra("gameName", gameName);
                 startActivity(myIntent);

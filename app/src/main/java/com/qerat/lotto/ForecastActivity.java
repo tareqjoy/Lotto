@@ -23,9 +23,8 @@ import java.util.List;
 
 public class ForecastActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
-    private List<ResultClass> itemList = new ArrayList<>();
-    private ResultAdapter mAdapter;
-    private String gameName;
+    private List<ForecastClass> itemList = new ArrayList<>();
+    private ForecastAdapter mAdapter;
     private TextView noResult;
     private SwipeRefreshLayout refreshLayout;
 
@@ -46,18 +45,16 @@ public class ForecastActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_forecast);
 
-        Intent intent = getIntent();
-        gameName = intent.getStringExtra("gameName");
 
-        setTitle(gameName);
+        setTitle("Forecast");
 
         FloatingActionButton fab = findViewById(R.id.fab);
         refreshLayout = findViewById(R.id.refreshLayout);
-        recyclerView = findViewById(R.id.resultContainerRecyclerView);
+        recyclerView = findViewById(R.id.forecastContainerRecyclerView);
         noResult = findViewById(R.id.noResultsTextView);
 
 
-        mAdapter = new ResultAdapter(itemList, gameName, this);
+        mAdapter = new ForecastAdapter(itemList, this);
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(mLayoutManager);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
@@ -67,9 +64,9 @@ public class ForecastActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent myIntent = new Intent(ForecastActivity.this, ResultAddActivity.class);
+                Intent myIntent = new Intent(ForecastActivity.this, ForecastAddActivity.class);
                 //Optional parameters
-                myIntent.putExtra("gameName", gameName);
+
                 startActivity(myIntent);
             }
         });
@@ -88,12 +85,12 @@ public class ForecastActivity extends AppCompatActivity {
 
     private void readDataFromFirebase() {
         refreshLayout.setRefreshing(true);
-        FirebaseUtilClass.getDatabaseReference().child("Game").child(gameName).child("results").orderByChild("date").addValueEventListener(new ValueEventListener() {
+        FirebaseUtilClass.getDatabaseReference().child("Forecast").orderByChild("date").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 itemList.clear();
                 for (DataSnapshot dsp : dataSnapshot.getChildren()) {
-                    final ResultClass item = dsp.getValue(ResultClass.class);
+                    final ForecastClass item = dsp.getValue(ForecastClass.class);
                     itemList.add(item);
 
 

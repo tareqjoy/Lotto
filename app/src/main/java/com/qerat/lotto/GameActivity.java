@@ -1,23 +1,19 @@
 package com.qerat.lotto;
 
-import android.app.AlertDialog;
-import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.Toolbar;
-import android.text.Editable;
 import android.util.Pair;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.google.firebase.database.DataSnapshot;
@@ -28,13 +24,13 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.Map;
 
-public class MainActivity extends AppCompatActivity {
+public class GameActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
     private List<Pair<String, String>> itemList = new ArrayList<>();
     private GameItemAdapter mAdapter;
     private TextView noGame;
+    private LinearLayout forecastLinearLayout;
     private SwipeRefreshLayout refreshLayout;
 
     @Override
@@ -45,6 +41,7 @@ public class MainActivity extends AppCompatActivity {
 
         recyclerView = findViewById(R.id.gameContainer);
         noGame = findViewById(R.id.noGame);
+        forecastLinearLayout = findViewById(R.id.forecastLinearLayout);
         refreshLayout = findViewById(R.id.refreshLayout);
 
 
@@ -54,11 +51,20 @@ public class MainActivity extends AppCompatActivity {
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.setAdapter(mAdapter);
 
+
+        forecastLinearLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent myIntent = new Intent(GameActivity.this, ForecastActivity.class);
+                startActivity(myIntent);
+            }
+        });
+
         FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                new AddGameDialog(MainActivity.this).show();
+                new GameAddDialog(GameActivity.this).show();
             }
         });
 
@@ -99,12 +105,18 @@ public class MainActivity extends AppCompatActivity {
 
 
                     itemList.add(new Pair<String, String>(name, date));
-                    mAdapter.notifyDataSetChanged();
 
 
                     //add result into array list
                 }
-
+                if (itemList.size() == 0) {
+                    recyclerView.setVisibility(View.GONE);
+                    noGame.setVisibility(View.VISIBLE);
+                } else {
+                    recyclerView.setVisibility(View.VISIBLE);
+                    noGame.setVisibility(View.VISIBLE);
+                }
+                mAdapter.notifyDataSetChanged();
                 refreshLayout.setRefreshing(false);
 
 

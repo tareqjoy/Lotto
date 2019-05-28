@@ -26,18 +26,32 @@
             android:paddingRight="13dp"
             android:paddingBottom="5dp">
 
-            <Spinner
-                android:id="@+id/gameNameSpinner"
+            <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight=".5"
-                android:textSize="14sp" />
+                android:layout_weight=".5">
+
+                <ProgressBar
+                    android:id="@+id/loadingProgressbar"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp" />
+
+                <Spinner
+                    android:id="@+id/gameNameSpinner"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+
+                    android:textSize="14sp" />
+            </LinearLayout>
+
 
             <EditText
-                android:id="@+id/dateTextView"
+                android:id="@+id/dateEditText"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight=".5"
+                android:clickable="false"
+                android:focusable="false"
                 android:paddingLeft="9dp"
                 android:paddingRight="9dp"
                 android:text="12/10/1201"

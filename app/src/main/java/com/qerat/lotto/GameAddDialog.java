@@ -25,21 +25,21 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.ValueEventListener;
 
-public class AddGameDialog extends Dialog {
+public class GameAddDialog extends Dialog {
     private Button addButton, cancelButton, deleteButton;
     private TextInputLayout gameNameContainer;
     private EditText gameNameEditText;
     private String oldName;
     private Boolean editDlg = false;
 
-    public AddGameDialog(Context context, String name) {
+    public GameAddDialog(Context context, String name) {
         super(context);
         this.oldName = name;
 
         editDlg = true;
     }
 
-    public AddGameDialog(Context context) {
+    public GameAddDialog(Context context) {
         super(context);
     }
 
@@ -192,7 +192,7 @@ public class AddGameDialog extends Dialog {
                         .setNegativeButton(android.R.string.no, new OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
-                                AddGameDialog.this.dismiss();
+                                GameAddDialog.this.dismiss();
                             }
                         })
                         .setIcon(android.R.drawable.ic_dialog_alert)
